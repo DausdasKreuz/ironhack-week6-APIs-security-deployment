@@ -1,0 +1,467 @@
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (1.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateSandwiches (20160208151610)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "sandwiches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bread_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160208151610"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateIngredients (20160208160157)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "ingredients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "calories" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160208160157"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateSandwichIngredients (20161128135543)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "sandwich_ingredients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sandwich_id" integer, "ingredient_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161128135543"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mSandwich Load (0.6ms)[0m  [1mSELECT  "sandwiches".* FROM "sandwiches"  ORDER BY "sandwiches"."id" ASC LIMIT 1[0m
+  [1m[35mIngredient Load (0.7ms)[0m  SELECT  "ingredients".* FROM "ingredients"  ORDER BY "ingredients"."id" ASC LIMIT 1
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.6ms)[0m  [1mINSERT INTO "ingredients" ("name", "calories", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "bacon"], ["calories", 200], ["created_at", "2016-11-28 14:05:46.203700"], ["updated_at", "2016-11-28 14:05:46.203700"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "ingredients" ("name", "calories", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "lechuga"], ["calories", 20], ["created_at", "2016-11-28 14:05:46.213107"], ["updated_at", "2016-11-28 14:05:46.213107"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "sandwiches" ("name", "bread_type", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "vegetal"], ["bread_type", "gluten free"], ["created_at", "2016-11-28 14:05:46.226711"], ["updated_at", "2016-11-28 14:05:46.226711"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sandwiches" ("name", "bread_type", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "fat"], ["bread_type", "fatty"], ["created_at", "2016-11-28 14:05:46.230453"], ["updated_at", "2016-11-28 14:05:46.230453"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[36mSandwich Load (0.6ms)[0m  [1mSELECT  "sandwiches".* FROM "sandwiches"  ORDER BY "sandwiches"."id" ASC LIMIT 1[0m
+  [1m[35mIngredient Load (0.6ms)[0m  SELECT  "ingredients".* FROM "ingredients"  ORDER BY "ingredients"."id" ASC LIMIT 1
+  [1m[36mIngredient Load (0.6ms)[0m  [1mSELECT  "ingredients".* FROM "ingredients"  ORDER BY "ingredients"."id" ASC LIMIT 1[0m
+  [1m[35mSandwich Load (0.8ms)[0m  SELECT  "sandwiches".* FROM "sandwiches"  ORDER BY "sandwiches"."id" ASC LIMIT 1
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT  "ingredients".* FROM "ingredients"  ORDER BY "ingredients"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "sandwich_ingredients" ("sandwich_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["sandwich_id", 1], ["ingredient_id", 1], ["created_at", "2016-11-28 14:26:26.335128"], ["updated_at", "2016-11-28 14:26:26.335128"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?[0m  [["sandwich_id", 1]]
+
+
+Started GET "/sandwiches/1" for ::1 at 2016-11-28 15:43:58 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SandwichesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mSandwich Load (0.7ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 25ms (Views: 1.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/sandwiches/1/details" for ::1 at 2016-11-28 15:44:04 +0100
+Processing by SandwichesController#details as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mSandwich Load (0.2ms)[0m  [1mSELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mIngredient Load (0.8ms)[0m  SELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?  [["sandwich_id", 1]]
+Completed 200 OK in 71ms (Views: 20.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/sandwiches/1/details" for ::1 at 2016-11-28 16:03:46 +0100
+Processing by SandwichesController#details as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mSandwich Load (2.0ms)[0m  [1mSELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?  [["sandwich_id", 1]]
+Completed 200 OK in 52ms (Views: 7.3ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/ingredients" for ::1 at 2016-11-28 16:03:55 +0100
+Processing by IngredientsController#index as */*
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT "ingredients".* FROM "ingredients"[0m
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sandwiches/1" for ::1 at 2016-11-28 16:04:03 +0100
+Processing by SandwichesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mSandwich Load (0.3ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:04:42 +0100
+
+ActionController::RoutingError (No route matches [POST] "/sandwiches/1/add_ingredient"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/targess/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/targess/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/targess/.rvm/rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.4ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (15.9ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (38.6ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (163.7ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (77.6ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (155.5ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:05:35 +0100
+Processing by SandwichesController#add_ingredient as */*
+  Parameters: {"ingredient_id"=>"2", "id"=>"1"}
+Can't verify CSRF token authenticity
+  [1m[36mSandwich Load (0.7ms)[0m  [1mSELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT  "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "sandwich_ingredients" ("sandwich_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["sandwich_id", 1], ["ingredient_id", 2], ["created_at", "2016-11-28 15:05:35.922363"], ["updated_at", "2016-11-28 15:05:35.922363"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 58ms (Views: 0.4ms | ActiveRecord: 4.3ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:09:02 +0100
+
+SyntaxError (/Users/targess/Ironhack/Bootcamp/week6/day1/sandwichr/app/controllers/sandwiches_controller.rb:68: syntax error, unexpected ',', expecting =>
+		render json: {sandwich, ingredients: sandwich.ingredients}
+		                       ^
+/Users/targess/Ironhack/Bootcamp/week6/day1/sandwichr/app/controllers/sandwiches_controller.rb:68: syntax error, unexpected '}', expecting keyword_end
+/Users/targess/Ironhack/Bootcamp/week6/day1/sandwichr/app/controllers/sandwiches_controller.rb:78: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/sandwiches_controller.rb:68: syntax error, unexpected ',', expecting =>
+  app/controllers/sandwiches_controller.rb:68: syntax error, unexpected '}', expecting keyword_end
+  app/controllers/sandwiches_controller.rb:78: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.8ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (88.2ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (61.4ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (135.9ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:09:43 +0100
+Processing by SandwichesController#add_ingredient as */*
+  Parameters: {"ingredient_id"=>"2", "id"=>"1"}
+Can't verify CSRF token authenticity
+  [1m[35mSandwich Load (0.7ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT  "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "sandwich_ingredients" ("sandwich_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["sandwich_id", 1], ["ingredient_id", 2], ["created_at", "2016-11-28 15:09:43.635552"], ["updated_at", "2016-11-28 15:09:43.635552"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  commit transaction
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?[0m  [["sandwich_id", 1]]
+Completed 200 OK in 55ms (Views: 4.3ms | ActiveRecord: 4.9ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddTotalCaloriesToSandwiches (20161128151805)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.1ms)[0m  [1mALTER TABLE "sandwiches" ADD "total_calories" integer[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161128151805"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to AddTotalCaloriesToSandwiches (20161128151805)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  CREATE TEMPORARY TABLE "asandwiches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bread_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "total_calories" integer) 
+  [1m[36m (0.6ms)[0m  [1mSELECT * FROM "sandwiches"[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "asandwiches" ("id","name","bread_type","created_at","updated_at","total_calories") VALUES (1, 'vegetal', 'gluten free', '2016-11-28 14:05:46.226711', '2016-11-28 14:05:46.226711', NULL)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "asandwiches" ("id","name","bread_type","created_at","updated_at","total_calories") VALUES (2, 'fat', 'fatty', '2016-11-28 14:05:46.230453', '2016-11-28 14:05:46.230453', NULL)[0m
+  [1m[35m (1.0ms)[0m  DROP TABLE "sandwiches"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "sandwiches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bread_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "asandwiches"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "sandwiches" ("id","name","bread_type","created_at","updated_at") VALUES (1, 'vegetal', 'gluten free', '2016-11-28 14:05:46.226711', '2016-11-28 14:05:46.226711')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "sandwiches" ("id","name","bread_type","created_at","updated_at") VALUES (2, 'fat', 'fatty', '2016-11-28 14:05:46.230453', '2016-11-28 14:05:46.230453')
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "asandwiches"[0m
+  [1m[35mSQL (0.6ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?  [["version", "20161128151805"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddTotalCaloriesToSandwiches (20161128151805)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "sandwiches" ADD "total_calories" integer DEFAULT 0[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161128151805"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "ingredients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "calories" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE TABLE "sandwich_ingredients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sandwich_id" integer, "ingredient_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "sandwiches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bread_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "total_calories" integer DEFAULT 0) [0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20161128151805')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160208151610')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160208160157')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20161128135543')[0m
+  [1m[35m (1.1ms)[0m  DROP TABLE "ingredients"
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "ingredients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "calories" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  DROP TABLE "sandwich_ingredients"
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "sandwich_ingredients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sandwich_id" integer, "ingredient_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  DROP TABLE "sandwiches"
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "sandwiches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bread_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "total_calories" integer DEFAULT 0) [0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ingredients" ("name", "calories", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "bacon"], ["calories", 200], ["created_at", "2016-11-28 15:20:05.959494"], ["updated_at", "2016-11-28 15:20:05.959494"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "ingredients" ("name", "calories", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "lechuga"], ["calories", 20], ["created_at", "2016-11-28 15:20:05.963100"], ["updated_at", "2016-11-28 15:20:05.963100"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "sandwiches" ("name", "bread_type", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "vegetal"], ["bread_type", "gluten free"], ["created_at", "2016-11-28 15:20:05.975491"], ["updated_at", "2016-11-28 15:20:05.975491"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sandwiches" ("name", "bread_type", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "fat"], ["bread_type", "fatty"], ["created_at", "2016-11-28 15:20:05.978740"], ["updated_at", "2016-11-28 15:20:05.978740"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+
+
+Started POST "/sandwiches/" for ::1 at 2016-11-28 16:20:17 +0100
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by SandwichesController#create as */*
+  Parameters: {"ingredient_id"=>"2"}
+Can't verify CSRF token authenticity
+Completed 400 Bad Request in 11ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: sandwich):
+  app/controllers/sandwiches_controller.rb:75:in `sandwich_params'
+  app/controllers/sandwiches_controller.rb:8:in `create'
+
+
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.1ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.7ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (69.8ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (71.7ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/targess/.rvm/gems/ruby-2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (155.1ms)
+
+
+Started GET "/sandwiches/" for ::1 at 2016-11-28 16:20:21 +0100
+Processing by SandwichesController#index as */*
+  [1m[36mSandwich Load (0.7ms)[0m  [1mSELECT "sandwiches".* FROM "sandwiches"[0m
+Completed 200 OK in 15ms (Views: 11.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/sandwiches/1/details" for ::1 at 2016-11-28 16:20:28 +0100
+Processing by SandwichesController#details as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mSandwich Load (0.3ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mIngredient Load (0.8ms)[0m  [1mSELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?[0m  [["sandwich_id", 1]]
+Completed 200 OK in 28ms (Views: 4.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/sandwiches/2/details" for ::1 at 2016-11-28 16:20:33 +0100
+Processing by SandwichesController#details as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mSandwich Load (0.1ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mIngredient Load (0.1ms)[0m  [1mSELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?[0m  [["sandwich_id", 2]]
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:27:13 +0100
+Processing by SandwichesController#add_ingredient as */*
+  Parameters: {"ingredient_id"=>"2", "id"=>"1"}
+Can't verify CSRF token authenticity
+  [1m[35mSandwich Load (1.6ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mIngredient Load (0.5ms)[0m  [1mSELECT  "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "sandwich_ingredients" ("sandwich_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["sandwich_id", 1], ["ingredient_id", 2], ["created_at", "2016-11-28 15:27:13.828482"], ["updated_at", "2016-11-28 15:27:13.828482"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "sandwiches" SET "total_calories" = ?, "updated_at" = ? WHERE "sandwiches"."id" = ?  [["total_calories", 20], ["updated_at", "2016-11-28 15:27:13.834441"], ["id", 1]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?  [["sandwich_id", 1]]
+Completed 200 OK in 84ms (Views: 4.6ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:27:27 +0100
+Processing by SandwichesController#add_ingredient as */*
+  Parameters: {"ingredient_id"=>"1", "id"=>"1"}
+Can't verify CSRF token authenticity
+  [1m[36mSandwich Load (0.2ms)[0m  [1mSELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mIngredient Load (0.2ms)[0m  SELECT  "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "sandwich_ingredients" ("sandwich_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["sandwich_id", 1], ["ingredient_id", 1], ["created_at", "2016-11-28 15:27:27.078371"], ["updated_at", "2016-11-28 15:27:27.078371"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.4ms)[0m  [1mUPDATE "sandwiches" SET "total_calories" = ?, "updated_at" = ? WHERE "sandwiches"."id" = ?[0m  [["total_calories", 220], ["updated_at", "2016-11-28 15:27:27.083014"], ["id", 1]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?[0m  [["sandwich_id", 1]]
+Completed 200 OK in 20ms (Views: 4.3ms | ActiveRecord: 5.5ms)
+
+
+Started POST "/sandwiches/1/add_ingredient" for ::1 at 2016-11-28 16:27:35 +0100
+Processing by SandwichesController#add_ingredient as */*
+  Parameters: {"ingredient_id"=>"1", "id"=>"1"}
+Can't verify CSRF token authenticity
+  [1m[35mSandwich Load (0.2ms)[0m  SELECT  "sandwiches".* FROM "sandwiches" WHERE "sandwiches"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mIngredient Load (0.3ms)[0m  [1mSELECT  "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "sandwich_ingredients" ("sandwich_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["sandwich_id", 1], ["ingredient_id", 1], ["created_at", "2016-11-28 15:27:35.486780"], ["updated_at", "2016-11-28 15:27:35.486780"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "sandwiches" SET "total_calories" = ?, "updated_at" = ? WHERE "sandwiches"."id" = ?  [["total_calories", 420], ["updated_at", "2016-11-28 15:27:35.495028"], ["id", 1]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mIngredient Load (0.5ms)[0m  SELECT "ingredients".* FROM "ingredients" INNER JOIN "sandwich_ingredients" ON "ingredients"."id" = "sandwich_ingredients"."ingredient_id" WHERE "sandwich_ingredients"."sandwich_id" = ?  [["sandwich_id", 1]]
+Completed 200 OK in 25ms (Views: 5.6ms | ActiveRecord: 5.9ms)
+  [1m[36mSandwich Load (2.5ms)[0m  [1mSELECT "sandwiches".* FROM "sandwiches"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2016-11-29 14:26:18 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (32.8ms)
+Completed 200 OK in 227ms (Views: 226.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-11-29 14:26:21 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sandwich" for 127.0.0.1 at 2016-11-29 14:26:39 +0100
+
+ActionController::RoutingError (No route matches [GET] "/sandwich"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /home/dausdaskreuz/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/dausdaskreuz/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/dausdaskreuz/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.1ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.8ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (137.3ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (30.7ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (530.3ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.8ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (266.3ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (375.7ms)
+
+
+Started GET "/sandwiches" for 127.0.0.1 at 2016-11-29 14:28:20 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SandwichesController#index as HTML
+  [1m[35mSandwich Load (0.2ms)[0m  SELECT "sandwiches".* FROM "sandwiches"
+Completed 200 OK in 100ms (Views: 7.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/ingredients" for 127.0.0.1 at 2016-11-29 14:28:35 +0100
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.2ms)[0m  [1mSELECT "ingredients".* FROM "ingredients"[0m
+Completed 200 OK in 47ms (Views: 9.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sandwich_ingredients" for 127.0.0.1 at 2016-11-29 14:28:49 +0100
+
+ActionController::RoutingError (No route matches [GET] "/sandwich_ingredients"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /home/dausdaskreuz/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /home/dausdaskreuz/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /home/dausdaskreuz/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (7.0ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (10.6ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (56.7ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (99.1ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (114.7ms)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2016-11-29 14:29:00 +0100
+Processing by Rails::InfoController#routes as HTML
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/dausdaskreuz/.rvm/gems/ruby-2.3.1/gems/railties-4.2.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 89ms (Views: 88.3ms | ActiveRecord: 0.0ms)
